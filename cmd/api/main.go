@@ -10,6 +10,9 @@ import (
 func main() {
 	cfg := config{
 		addr: env.GetString("ADDR", ":8080"),
+		db: dbConfig{
+			addr: env.GetString("DB_ADDR", "postgres://user:password@localhost/social?sslmode=disable"),
+		},
 	}
 
 	store := store.NewStorage(nil)
