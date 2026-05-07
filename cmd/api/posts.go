@@ -63,7 +63,7 @@ func (app *application) getPostHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := writeJSON(w, http.StatusCreated, post); err != nil {
+	if err := writeJSON(w, http.StatusOK, post); err != nil {
 		writeJSONError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
