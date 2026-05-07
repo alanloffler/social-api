@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/alanloffler/social/internal/db"
 	"github.com/alanloffler/social/internal/env"
 	"github.com/alanloffler/social/internal/store"
 )
@@ -18,7 +19,17 @@ func main() {
 		},
 	}
 
-	store := store.NewStorage(nil)
+	db, err := db.New(
+		cfg.db.addr,
+		cfg.db.maxOpenConns,
+		cfg.db.maxIdleConns,
+		cfg.db.maxIdleTime,
+	)
+	if err != nil {
+		log.Panic(err)
+	}
+
+	store := store.NewStorage(db)
 
 	app := &application{
 		config: cfg,
