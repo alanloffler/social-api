@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16.3
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: social
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+volumes:
+  db-data:
